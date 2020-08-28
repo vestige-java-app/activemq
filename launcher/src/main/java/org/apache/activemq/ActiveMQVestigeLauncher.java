@@ -30,7 +30,8 @@ public class ActiveMQVestigeLauncher implements Callable<Void> {
 					.resolve("org.eclipse.jetty", "apache-jstl", "9.4.28.v20200408").execute(DummyJobHelper.INSTANCE);
 			StringBuilder classPath = new StringBuilder(System.getProperty("java.class.path"));
 			for (ResolvedMavenArtifact dep : Collections.list(resolvedMavenArtifact.getDependencies())) {
-				classPath.append(":" + dep.getVestigeJar().getFile());
+				classPath.append(File.pathSeparator);
+				classPath.append(dep.getVestigeJar().getFile());
 			}
 			System.setProperty("java.class.path", classPath.toString());
 		} catch (ResolverException e) {
