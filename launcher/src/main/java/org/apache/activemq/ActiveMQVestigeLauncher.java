@@ -50,7 +50,7 @@ public class ActiveMQVestigeLauncher implements Callable<Void> {
 	public Void call() throws Exception {
 		
 		BrokerService broker = BrokerFactory
-				.createBroker("xbean:" + new File(config, "activemq.xml").toString());
+				.createBroker("xbean:" + new File(config, "activemq.xml").toURI().toURL().toString());
 		broker.start();
 		try {
 			synchronized (this) {
